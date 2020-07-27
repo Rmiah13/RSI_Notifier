@@ -2,14 +2,12 @@
 # Create a tool that notifies me whenever one of my stocks has a low RSI (Relative Strength Index)
 import pandas as pd
 from alpha_vantage.techindicators import TechIndicators
-import os
+import os, time, schedule
 import numpy as np
 from matplotlib import style
-import time
-import schedule
 style.use('ggplot')
 
-api_key = 'VSKPIUDFJEEYHJTM'
+api_key = 'ENTER API KEY HERE' #Get your API Key here - https://www.alphavantage.co
 
 def RSI_Buy():
     #Pull The Data
@@ -32,9 +30,8 @@ def RSI_Buy():
         df.reset_index(inplace=True)
         df.set_index('RSI',inplace=True)
 
-    #print(df.index[0])
         RSI = df.index[0]
-    #print(RSI)
+        
 
     #Determine whether RSI is below 30 or above 70
 
@@ -46,8 +43,3 @@ def RSI_Buy():
             print(i,' HOLD - ',RSI)
 
 RSI_Buy()
-
-##schedule.every().day.at("12:17").do(RSI_Buy)
-##while 1:
-##    schedule.run_pending()
-##    time.sleep(1)
